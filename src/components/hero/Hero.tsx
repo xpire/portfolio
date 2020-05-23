@@ -3,14 +3,13 @@ import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { useTransition, animated } from "react-spring";
+import { motion } from "framer-motion";
 
 import Section from "../section/Section";
 import AvatarLogo from "../../avatar.svg";
-import GithubLogo from "../../github.svg";
+import GithubLogo from "../../github2.png";
 import LinkedinLogo from "../../linkedin.svg";
 import GmailLogo from "../../email.svg";
-
-import debounce from "../../utils/debounce.function";
 
 const Box = styled.div`
   display: flex;
@@ -21,12 +20,15 @@ const TopLeftBox = styled(Box)`
   flex-direction: column;
   align-items: flex-start;
   padding-left: 5vw;
-  padding-top: 5vh;
-  pointer-events: none;
+  padding-top: 10vh;
+  z-index: 5;
 `;
 
 const BottomRightBox = styled(Box)`
   align-items: flex-start;
+  bottom: 100%;
+  right: 45%;
+  z-index: 0;
 `;
 
 const Line = styled(Grid)`
@@ -36,22 +38,23 @@ const Line = styled(Grid)`
   position: relative;
 `;
 
-const Animation = styled(Box)`
-  // position: relative;
-`;
-
-const AnimationInsides = styled(Box)`
+const AnimatedSentence = styled(Box)`
   display: flex;
   align-items: flex-start;
   flex-direction: row;
   white-space: nowrap;
   word-wrap: break-word;
-  // position: absolute;
   flex-wrap: wrap;
 `;
 
-const MinimalLink = styled.a`
+const MinimalLink = styled(motion.a)`
   text-decoration: none;
+  position: relative;
+`;
+
+const ParallaxImg = styled(motion.img)`
+  width: auto;
+  height: 100vh;
 `;
 
 const data = [
@@ -60,10 +63,9 @@ const data = [
     value: "Justin Or",
     left: "",
     right: "",
-    href: "/",
+    href: "#",
     key: 0,
     src: AvatarLogo,
-    style: { width: "150px", height: "150px" },
   },
   {
     name: "Linkedin is",
@@ -73,7 +75,6 @@ const data = [
     href: "https://au.linkedin.com/in/justinor",
     key: 1,
     src: LinkedinLogo,
-    style: { width: "150px", height: "150px" },
   },
   {
     name: "Github is",
@@ -83,7 +84,6 @@ const data = [
     href: "https://github.com/xpire",
     key: 2,
     src: GithubLogo,
-    style: { width: "150px", height: "150px" },
   },
   {
     name: "email is",
@@ -93,24 +93,30 @@ const data = [
     href: "mailto:justin.or.mail@gmail.com",
     key: 3,
     src: GmailLogo,
-    style: { width: "150px", height: "150px" },
   },
 ];
 
+type transitionProps = {
+  item: number;
+  props: any;
+  key: string;
+};
+
 const Hero = () => {
-  const [interactive, setInteractive] = useState(true);
   const [current, setCurrent] = useState(0);
+  const [hover, setHover] = useState(false);
+
   const onClick = useCallback(() => {
-    setCurrent((current) => (current + 1) % data.length);
-    // if (interactive) {
-    //   setCurrent((current: number) => (current + 1) % data.length);
-    //   setInteractive(false);
-    //   setTimeout(function () {
-    //     setInteractive(true);
-    //   }, 1000);
-    // }
+    setCurrent((current: number) => (current + 1) % data.length);
   }, []);
-  // const debouncedOnClick = debounce(onClick, 1000, true);
+
+  // const clickLink = () => {
+  //   const href = data[current].href;
+  //   if (href) {
+  //     var win = window.open(href, "_blank");
+  //     win!.focus();
+  //   }
+  // };
 
   const transitions = useTransition(current, (item: number) => item, {
     from: { opacity: 0, transform: "translate3d(0, -40px, 0)" },
@@ -120,7 +126,7 @@ const Hero = () => {
 
   const backgroundTransitions = useTransition(current, (item: number) => item, {
     from: { opacity: 0, transform: "translate3d(40px, 0, 0)" },
-    enter: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+    enter: { opacity: 0.4, transform: "translate3d(0, 0, 0)" },
     leave: { opacity: 0, transform: "translate3d(-40px, 0, 0)" },
   });
 
@@ -132,19 +138,17 @@ const Hero = () => {
             <Typography variant="h1">{`Hi my `}</Typography>
           </Grid>
           <Grid item>
-            <Animation>
-              {transitions.map(({ item, props, key }) => {
-                return (
-                  <AnimationInsides key={key}>
-                    <animated.div key={key} style={{ ...props }}>
-                      <Typography key={key} variant="h1">
-                        {data[item].name}
-                      </Typography>
-                    </animated.div>
-                  </AnimationInsides>
-                );
-              })}
-            </Animation>
+            {transitions.map(({ item, props, key }: transitionProps) => {
+              return (
+                <AnimatedSentence key={key + "n1"}>
+                  <animated.div key={key + "n2"} style={{ ...props }}>
+                    <Typography key={key + "n3"} variant="h1">
+                      {data[item].name}
+                    </Typography>
+                  </animated.div>
+                </AnimatedSentence>
+              );
+            })}
           </Grid>
         </Line>
         <Line container spacing={3}>
@@ -152,49 +156,73 @@ const Hero = () => {
             <Typography variant="h1">{`>`}</Typography>
           </Grid>
           <Grid item>
-            <Animation>
-              {transitions.map(({ item, props, key }) => {
-                return (
-                  <AnimationInsides key={key}>
+            {transitions.map(({ item, props, key }: transitionProps) => {
+              return (
+                <AnimatedSentence key={key + "v1"}>
+                  <MinimalLink
+                    href={data[item].href}
+                    target={item == 0 ? "" : "_blank"}
+                    rel={item == 0 ? "" : "noopener noreferrer"}
+                    style={{}}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
                     <animated.div
-                      key={key}
+                      key={key + "v2"}
                       style={{
                         ...props,
                         display: "flex",
                         flexDirection: "row",
                       }}
                     >
-                      <Typography variant="h1" color="textSecondary">
+                      <Typography
+                        key={key + "v3"}
+                        variant="h1"
+                        color="textSecondary"
+                      >
                         {data[item].left}
                       </Typography>
-                      <Typography key={key} variant="h1" color="secondary">
+                      <Typography
+                        key={key + "v4"}
+                        variant="h1"
+                        color="secondary"
+                      >
                         {data[item].value}
                       </Typography>
-                      <Typography variant="h1" color="textSecondary">
+                      <Typography
+                        key={key + "v5"}
+                        variant="h1"
+                        color="textSecondary"
+                      >
                         {data[item].right}
                       </Typography>
                     </animated.div>
-                  </AnimationInsides>
-                );
-              })}
-            </Animation>
+                  </MinimalLink>
+                </AnimatedSentence>
+              );
+            })}
           </Grid>
         </Line>
         <Typography variant="h3">
           Advanced Maths / Computer Science / UNSW
         </Typography>
       </TopLeftBox>
-      {/* <Animation>
-                {backgroundTransitions.map(({item, props, key}) => {
-                    return (
-                        <AnimationInsides>
-                            <animated.div key={key} style={{...props}}>
-                                <img src={data[item].src} style={{...data[item].style}}/>
-                            </animated.div>
-                        </AnimationInsides>
-                    )
-                })}
-            </Animation> */}
+      <BottomRightBox>
+        {backgroundTransitions.map(({ item, props, key }: transitionProps) => {
+          return (
+            <AnimatedSentence key={key + "b1"}>
+              <animated.div key={key + "b1"} style={{ ...props }}>
+                <ParallaxImg
+                  key={key + "b1"}
+                  src={data[item].src}
+                  // style={{ ...data[item].style }}
+                  alt="background overlay"
+                />
+              </animated.div>
+            </AnimatedSentence>
+          );
+        })}
+      </BottomRightBox>
     </Section>
   );
 };
