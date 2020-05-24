@@ -4,6 +4,8 @@ import "./App.css";
 
 import Background from "./components/background/Background";
 import Hero from "./components/hero/Hero";
+import About from "./components/about/About";
+import Projects from "./components/projects/Projects";
 import Theme from "./theme/Theme";
 
 function App() {
@@ -11,18 +13,8 @@ function App() {
     <Theme>
       <Background>
         <Hero />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <About />
+        <Projects />
       </Background>
     </Theme>
   );

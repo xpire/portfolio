@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -6,29 +6,16 @@ import { useTransition, animated } from "react-spring";
 import { motion } from "framer-motion";
 
 import Section from "../section/Section";
-import AvatarLogo from "../../avatar.svg";
+import { Box, TopLeftBox, BottomRightBox } from "../common/Box";
+import ColorText from "../common/ColorText";
+import AvatarLogo from "../../radar.svg";
 import GithubLogo from "../../github2.png";
 import LinkedinLogo from "../../linkedin.svg";
 import GmailLogo from "../../email.svg";
 
-const Box = styled.div`
-  display: flex;
-  position: absolute;
-`;
-
-const TopLeftBox = styled(Box)`
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 5vw;
-  padding-top: 10vh;
+const MySection = styled(Section)`
+  background: black;
   z-index: 5;
-`;
-
-const BottomRightBox = styled(Box)`
-  align-items: flex-start;
-  bottom: 100%;
-  right: 45%;
-  z-index: 0;
 `;
 
 const Line = styled(Grid)`
@@ -50,6 +37,7 @@ const AnimatedSentence = styled(Box)`
 const MinimalLink = styled(motion.a)`
   text-decoration: none;
   position: relative;
+  color: white;
 `;
 
 const ParallaxImg = styled(motion.img)`
@@ -110,13 +98,12 @@ const Hero = () => {
     setCurrent((current: number) => (current + 1) % data.length);
   }, []);
 
-  // const clickLink = () => {
-  //   const href = data[current].href;
-  //   if (href) {
-  //     var win = window.open(href, "_blank");
-  //     win!.focus();
-  //   }
-  // };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!hover) onClick();
+    }, 4000);
+    return () => clearInterval(interval);
+  });
 
   const transitions = useTransition(current, (item: number) => item, {
     from: { opacity: 0, transform: "translate3d(0, -40px, 0)" },
@@ -126,13 +113,16 @@ const Hero = () => {
 
   const backgroundTransitions = useTransition(current, (item: number) => item, {
     from: { opacity: 0, transform: "translate3d(40px, 0, 0)" },
-    enter: { opacity: 0.4, transform: "translate3d(0, 0, 0)" },
+    enter: { opacity: 0.5, transform: "translate3d(0, 0, 0)" },
     leave: { opacity: 0, transform: "translate3d(-40px, 0, 0)" },
   });
 
   return (
-    <Section onClick={onClick}>
-      <TopLeftBox>
+    <MySection onClick={onClick}>
+      <TopLeftBox
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
         <Line container spacing={3}>
           <Grid item>
             <Typography variant="h1">{`Hi my `}</Typography>
@@ -161,9 +151,8 @@ const Hero = () => {
                 <AnimatedSentence key={key + "v1"}>
                   <MinimalLink
                     href={data[item].href}
-                    target={item == 0 ? "" : "_blank"}
-                    rel={item == 0 ? "" : "noopener noreferrer"}
-                    style={{}}
+                    target={item === 0 ? "" : "_blank"}
+                    rel={item === 0 ? "" : "noopener noreferrer"}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -175,25 +164,13 @@ const Hero = () => {
                         flexDirection: "row",
                       }}
                     >
-                      <Typography
-                        key={key + "v3"}
-                        variant="h1"
-                        color="textSecondary"
-                      >
+                      <Typography key={key + "v3"} variant="h1">
                         {data[item].left}
                       </Typography>
-                      <Typography
-                        key={key + "v4"}
-                        variant="h1"
-                        color="secondary"
-                      >
+                      <ColorText key={key + "v4"} variant="h1">
                         {data[item].value}
-                      </Typography>
-                      <Typography
-                        key={key + "v5"}
-                        variant="h1"
-                        color="textSecondary"
-                      >
+                      </ColorText>
+                      <Typography key={key + "v5"} variant="h1">
                         {data[item].right}
                       </Typography>
                     </animated.div>
@@ -215,15 +192,15 @@ const Hero = () => {
                 <ParallaxImg
                   key={key + "b1"}
                   src={data[item].src}
-                  // style={{ ...data[item].style }}
                   alt="background overlay"
+                  style={{ filter: "invert(100%)" }}
                 />
               </animated.div>
             </AnimatedSentence>
           );
         })}
       </BottomRightBox>
-    </Section>
+    </MySection>
   );
 };
 
