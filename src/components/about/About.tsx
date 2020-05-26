@@ -35,9 +35,9 @@ const About = () => {
           interests are Statistics, Machine Learning, Security and Frontend.
         </Indented>
       </TopLeftBox>
-      <RelativeBox>
+      {/* <RelativeBox>
         <AngelBeats />
-      </RelativeBox>
+      </RelativeBox> */}
     </MySection>
   );
 };

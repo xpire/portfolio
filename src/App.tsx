@@ -14,9 +14,9 @@ function App() {
     <Theme>
       <Background>
         <Hero />
-        <About />
+        {/* <About />
         <Projects />
-        <Contact />
+        <Contact /> */}
       </Background>
     </Theme>
   );

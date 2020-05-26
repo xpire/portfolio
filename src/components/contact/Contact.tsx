@@ -16,6 +16,8 @@ import GmailLogo from "../../email.svg";
 const MySection = styled(Section)`
   background: black;
   z-index: 5;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Line = styled(Grid)`
@@ -119,76 +121,43 @@ const Contact = () => {
 
   return (
     <MySection onClick={onClick}>
-      <TopLeftBox
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-      >
-        <Line container spacing={3}>
-          <Grid item>
-            <Typography variant="h1">{`Contact me `}</Typography>
-          </Grid>
-        </Line>
-        <Line container spacing={3}>
-          <Grid item>
-            <Typography variant="h2">{`My `}</Typography>
-          </Grid>
-          <Grid item>
-            {transitions.map(({ item, props, key }: transitionProps) => {
-              return (
-                <AnimatedSentence key={key + "n1"}>
-                  <animated.div key={key + "n2"} style={{ ...props }}>
-                    <Typography key={key + "n3"} variant="h2">
-                      {data[item].name}
-                    </Typography>
-                  </animated.div>
-                </AnimatedSentence>
-              );
-            })}
-          </Grid>
-        </Line>
-        <Line container spacing={3}>
-          <Grid item>
-            <Typography variant="h3">{`>`}</Typography>
-          </Grid>
-          <Grid item>
-            {transitions.map(({ item, props, key }: transitionProps) => {
-              return (
-                <AnimatedSentence key={key + "v1"}>
-                  <MinimalLink
-                    href={data[item].href}
-                    target={item === 0 ? "" : "_blank"}
-                    rel={item === 0 ? "" : "noopener noreferrer"}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <animated.div
-                      key={key + "v2"}
-                      style={{
-                        ...props,
-                        display: "flex",
-                        flexDirection: "row",
-                      }}
-                    >
-                      <Typography key={key + "v3"} variant="h2">
-                        {data[item].left}
-                      </Typography>
-                      <ColorText key={key + "v4"} variant="h2">
-                        {data[item].value}
-                      </ColorText>
-                      <Typography key={key + "v5"} variant="h2">
-                        {data[item].right}
-                      </Typography>
-                    </animated.div>
-                  </MinimalLink>
-                </AnimatedSentence>
-              );
-            })}
-          </Grid>
-        </Line>
-        <Typography variant="h3">
-          Advanced Maths / Computer Science / UNSW
-        </Typography>
-      </TopLeftBox>
+      {transitions.map(({ item, props, key }: transitionProps) => {
+        return (
+          <animated.div
+            key={key + "n2"}
+            style={{
+              ...props,
+              position: "absolute", // to ensure animation happens at correct place
+              display: "flex",
+              flexDirection: "column",
+              align: "left",
+            }}
+          >
+            <Typography key={key + "n3"} variant="h2" align="left">
+              {"Hi, " + data[item].name}
+              <br />
+              {data[item].left}
+              <ColorText key={key + "v4"} variant="h2" display="inline">
+                {data[item].value}
+              </ColorText>
+              {data[item].right}
+            </Typography>
+            {/* <animated.div style={{ ...props, display: "inline" }}> */}
+            <Typography
+              key={key + "v3"}
+              variant="h2"
+              display="inline"
+              align="left"
+              style={{ flexDirection: "row" }}
+            ></Typography>
+          </animated.div>
+          // </animated.div>
+        );
+      })}
+
+      <Typography variant="h3">
+        Advanced Maths / Computer Science / UNSW
+      </Typography>
       <BottomRightBox>
         {backgroundTransitions.map(({ item, props, key }: transitionProps) => {
           return (

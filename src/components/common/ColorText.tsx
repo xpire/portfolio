@@ -23,6 +23,7 @@ type Props = {
     | "body2"
     | "srOnly"
     | undefined;
+  display?: "inline";
   duration?: number;
 };
 
