@@ -32,9 +32,17 @@ const ColorText = ({ children, ...restProps }: Props) => {
     <motion.span
       style={{ color: "#3F5EFB" }}
       animate={{ color: "#FC466B" }}
-      transition={{ duration: restProps!.duration || TRANSITION }}
+      transition={{
+        duration: restProps!.duration || TRANSITION,
+      }}
+      whileHover={{
+        color: "#3F5EFB",
+        transition: {
+          duration: 1,
+        },
+      }}
     >
-      <Typography {...restProps}>{children}</Typography>
+      {children}
     </motion.span>
   );
 };

@@ -19,7 +19,7 @@ const Indented = styled(Typography)`
 
 const Projects = () => {
   return (
-    <MySection>
+    <MySection id="projects-anchor">
       <TopLeftBox>
         <Typography variant="h1">Projects</Typography>
         <Indented variant="h4">

@@ -7,16 +7,19 @@ import Hero from "./components/hero/Hero";
 import About from "./components/about/About";
 import Projects from "./components/projects/Projects";
 import Contact from "./components/contact/Contact";
+import Title from "./components/title/Title";
+import Header from "./components/header/Header";
 import Theme from "./theme/Theme";
 
 function App() {
   return (
     <Theme>
       <Background>
-        <Hero />
-        {/* <About />
+        <Header />
+        <Title />
+        <About />
         <Projects />
-        <Contact /> */}
+        <Contact />
       </Background>
     </Theme>
   );

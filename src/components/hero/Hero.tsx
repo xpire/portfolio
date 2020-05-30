@@ -41,10 +41,10 @@ const MinimalLink = styled(motion.a)`
 `;
 
 const ParallaxImg = styled(motion.img)`
-  width: auto;
-  height: 100vh;
+  width: 110vw;
+  max-width: 800px;
+  height: auto;
 `;
-
 const data = [
   {
     name: "name is",
@@ -57,7 +57,7 @@ const data = [
   },
   {
     name: "Linkedin is",
-    value: "justinor",
+    value: "‌justinor",
     left: "linkedin.com/in/",
     right: "/",
     href: "https://au.linkedin.com/in/justinor",
@@ -66,7 +66,7 @@ const data = [
   },
   {
     name: "Github is",
-    value: "xpire",
+    value: "‌xpire",
     left: "github.com/",
     right: "/",
     href: "https://github.com/xpire",
@@ -75,9 +75,9 @@ const data = [
   },
   {
     name: "email is",
-    value: "justin.or.mail",
+    value: "justin.or.mail‌‌",
     left: "",
-    right: "@gmail.com",
+    right: "‌@gmail‌.com",
     href: "mailto:justin.or.mail@gmail.com",
     key: 3,
     src: GmailLogo,
@@ -123,16 +123,16 @@ const Hero = () => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <Line container spacing={3}>
+        <Line container spacing={1}>
           <Grid item>
-            <Typography variant="h1">{`Hi my `}</Typography>
+            <Typography variant="h2">{`Hi my `}</Typography>
           </Grid>
           <Grid item>
             {transitions.map(({ item, props, key }: transitionProps) => {
               return (
                 <AnimatedSentence key={key + "n1"}>
                   <animated.div key={key + "n2"} style={{ ...props }}>
-                    <Typography key={key + "n3"} variant="h1">
+                    <Typography key={key + "n3"} variant="h2">
                       {data[item].name}
                     </Typography>
                   </animated.div>
@@ -141,9 +141,9 @@ const Hero = () => {
             })}
           </Grid>
         </Line>
-        <Line container spacing={3}>
+        <Line container spacing={2}>
           <Grid item>
-            <Typography variant="h1">{`>`}</Typography>
+            <Typography variant="h2">{`>`}</Typography>
           </Grid>
           <Grid item>
             {transitions.map(({ item, props, key }: transitionProps) => {
@@ -164,13 +164,13 @@ const Hero = () => {
                         flexDirection: "row",
                       }}
                     >
-                      <Typography key={key + "v3"} variant="h1">
+                      <Typography key={key + "v3"} variant="h2">
                         {data[item].left}
                       </Typography>
-                      <ColorText key={key + "v4"} variant="h1">
+                      <ColorText key={key + "v4"} variant="h2">
                         {data[item].value}
                       </ColorText>
-                      <Typography key={key + "v5"} variant="h1">
+                      <Typography key={key + "v5"} variant="h2">
                         {data[item].right}
                       </Typography>
                     </animated.div>

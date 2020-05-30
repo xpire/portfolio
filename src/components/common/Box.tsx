@@ -15,8 +15,7 @@ export const TopLeftBox = styled(Box)`
 `;
 
 export const BottomRightBox = styled(Box)`
-  align-items: flex-start;
-  bottom: 100%;
-  right: 45%;
+  align-items: flex-end;
+  flex-direction: column;
   z-index: 0;
 `;

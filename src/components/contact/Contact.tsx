@@ -15,16 +15,20 @@ import GmailLogo from "../../email.svg";
 
 const MySection = styled(Section)`
   background: black;
-  z-index: 5;
+  z-index: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
-const Line = styled(Grid)`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+const Body = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10vh;
+  padding-right: 5vw;
+  padding-left: 5vw;
+  padding-bottom: 20vh;
 `;
 
 const AnimatedSentence = styled(Box)`
@@ -43,8 +47,12 @@ const MinimalLink = styled(motion.a)`
 `;
 
 const ParallaxImg = styled(motion.img)`
-  width: auto;
-  height: 100vh;
+  width: 100vw;
+  // max-width: 700px;
+  // bottom: 0;
+  height: auto;
+  position: absolute;
+  z-index: 2;
 `;
 
 const data = [
@@ -59,7 +67,7 @@ const data = [
   },
   {
     name: "Linkedin is",
-    value: "justinor",
+    value: "‌justinor",
     left: "linkedin.com/in/",
     right: "/",
     href: "https://au.linkedin.com/in/justinor",
@@ -68,7 +76,7 @@ const data = [
   },
   {
     name: "Github is",
-    value: "xpire",
+    value: "‌xpire",
     left: "github.com/",
     right: "/",
     href: "https://github.com/xpire",
@@ -77,9 +85,9 @@ const data = [
   },
   {
     name: "email is",
-    value: "justin.or.mail",
+    value: "justin.or.mail‌‌",
     left: "",
-    right: "@gmail.com",
+    right: "‌@gmail‌.com",
     href: "mailto:justin.or.mail@gmail.com",
     key: 3,
     src: GmailLogo,
@@ -115,72 +123,60 @@ const Contact = () => {
 
   const backgroundTransitions = useTransition(current, (item: number) => item, {
     from: { opacity: 0, transform: "translate3d(40px, 0, 0)" },
-    enter: { opacity: 0.5, transform: "translate3d(0, 0, 0)" },
+    enter: { opacity: 0.2, transform: "translate3d(0, 0, 0)" },
     leave: { opacity: 0, transform: "translate3d(-40px, 0, 0)" },
   });
 
   return (
-    <MySection onClick={onClick}>
-      {transitions.map(({ item, props, key }: transitionProps) => {
-        return (
-          <animated.div
-            key={key + "n2"}
-            style={{
-              ...props,
-              position: "absolute", // to ensure animation happens at correct place
-              display: "flex",
-              flexDirection: "column",
-              align: "left",
-            }}
-          >
-            <Typography key={key + "n3"} variant="h2" align="left">
-              {"Hi, " + data[item].name}
-              <br />
-              {data[item].left}
-              <ColorText key={key + "v4"} variant="h2" display="inline">
-                {data[item].value}
-              </ColorText>
-              {data[item].right}
-            </Typography>
-            {/* <animated.div style={{ ...props, display: "inline" }}> */}
-            <Typography
-              key={key + "v3"}
-              variant="h2"
-              display="inline"
-              align="left"
-              style={{ flexDirection: "row" }}
-            ></Typography>
-          </animated.div>
-          // </animated.div>
-        );
-      })}
-
-      <Typography variant="h3">
-        Advanced Maths / Computer Science / UNSW
-      </Typography>
-      <BottomRightBox>
-        {backgroundTransitions.map(({ item, props, key }: transitionProps) => {
+    <MySection onClick={onClick} id="contact-anchor">
+      <Body>
+        <Typography variant="h1">Contact</Typography>
+      </Body>
+      <Body>
+        {transitions.map(({ item, props, key }: transitionProps) => {
           return (
-            <AnimatedSentence key={key + "b1"}>
-              <animated.div key={key + "b1"} style={{ ...props }}>
-                <ParallaxImg
-                  key={key + "b1"}
-                  src={data[item].src}
-                  alt="background overlay"
-                  style={{ filter: "invert(100%)" }}
-                />
-              </animated.div>
-            </AnimatedSentence>
+            <animated.div
+              key={key + "n2"}
+              style={{
+                ...props,
+                position: "absolute", // to ensure animation happens at correct place
+                overflowWrap: "break-word",
+              }}
+            >
+              <Typography key={key + "n3"} variant="h1" align="left">
+                {"My " + data[item].name + " "}
+              </Typography>
+              <MinimalLink>
+                <Typography key={key + "v1"} variant="h1">
+                  {data[item].left}
+                  <ColorText key={key + "v4"} variant="h1" display="inline">
+                    {data[item].value}
+                  </ColorText>
+                  {data[item].right}
+                </Typography>
+              </MinimalLink>
+            </animated.div>
           );
         })}
-      </BottomRightBox>
+      </Body>
+      {/* {/* <BottomRightBox> */}
+      {backgroundTransitions.map(({ item, props, key }: transitionProps) => {
+        return (
+          <AnimatedSentence key={key + "b1"}>
+            <animated.div key={key + "b1"} style={{ ...props }}>
+              <ParallaxImg
+                key={key + "b1"}
+                src={data[item].src}
+                alt="background overlay"
+                style={{ filter: "invert(100%)" }}
+              />
+            </animated.div>
+          </AnimatedSentence>
+        );
+      })}
+      {/* </BottomRightBox> */}
     </MySection>
   );
 };
 
-const styledContact = styled(Contact)`
-  display: flex;
-  flex-direction: column;
-`;
-
-export default styledContact;
+export default Contact;

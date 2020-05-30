@@ -10,6 +10,7 @@ const Background = styled.div`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  overflow: hidden;
 `;
 
 export default Background;
