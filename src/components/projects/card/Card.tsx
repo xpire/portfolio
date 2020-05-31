@@ -24,6 +24,7 @@ export interface CardData {
   backgroundColor: string;
   src: string;
   content: React.ReactNode;
+  external: string;
 }
 
 interface Props extends CardData {
@@ -48,6 +49,7 @@ const ProjectCard = memo(
     backgroundColor,
     src,
     content,
+    external,
   }: Props) => {
     const [open, setOpen] = React.useState(false);
     // const handle;
@@ -79,6 +81,7 @@ const ProjectCard = memo(
           src={src}
           title={title}
           content={content}
+          external={external}
         />
       </motion.div>
     );
