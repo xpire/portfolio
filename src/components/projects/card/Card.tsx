@@ -7,7 +7,14 @@ import Image from "./Image";
 import { openSpring, closeSpring } from "../../ui/animation.constants";
 import { useInvertedBorderRadius } from "../../../utils/useInvertedBorderRadius.function";
 import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
 import styled from "styled-components";
+
+import ProjectDialog from "./ProjectDialog";
 
 export interface CardData {
   id: string;
@@ -26,15 +33,11 @@ interface Props extends CardData {
   };
 }
 
-const dismissDistance = 150;
-
-const ContentContainer = styled.div`
-  padding: 460px 35px 35px 35px;
-  max-width: 700px;
-  width: 90vw;
+const StyledCard = styled(Card)`
+  // margin: 10vw;
 `;
 
-const Card = memo(
+const ProjectCard = memo(
   ({
     isSelected,
     id,
@@ -46,71 +49,40 @@ const Card = memo(
     src,
     content,
   }: Props) => {
-    const y = useMotionValue(0);
-    const zIndex = useMotionValue(isSelected ? 2 : 1);
-
-    // Maintain the visual border radius when we perform the layoutTransition by inverting its scaleX/Y
-    const inverted = useInvertedBorderRadius(20);
-
-    // We'll use the opened card element to calculate the scroll constraints
-    const cardRef = useRef(null);
-
-    function checkSwipeToDismiss() {
-      y.get() > dismissDistance && history.push("/");
-    }
-
-    function checkZIndex(latest: any) {
-      if (isSelected) {
-        zIndex.set(2);
-      } else if (!isSelected && latest.scaleX < 1.01) {
-        zIndex.set(0);
-      }
-    }
-
-    // When this card is selected, attach a wheel event listener
-    const containerRef = useRef(null);
+    const [open, setOpen] = React.useState(false);
+    // const handle;
 
     return (
-      <li ref={containerRef} className={`card`}>
-        <Overlay isSelected={isSelected} />
-        <div className={`card-content-container ${isSelected && "open"}`}>
-          <motion.div
-            ref={cardRef}
-            className="card-content"
-            style={{ ...inverted, zIndex, y }}
-            layoutTransition={isSelected ? openSpring : closeSpring}
-            drag={isSelected ? "y" : false}
-            onDrag={checkSwipeToDismiss}
-            onUpdate={checkZIndex}
-          >
-            <Image
-              id={id}
-              isSelected={isSelected}
-              pointOfInterest={pointOfInterest}
-              backgroundColor={backgroundColor}
-              src={src}
+      <motion.div whileHover={{ scale: 1.06 }}>
+        <StyledCard>
+          <CardActionArea onClick={() => setOpen(true)}>
+            <CardMedia
+              component="img"
+              alt="Contemplative Reptile"
+              height="300"
+              image={src}
+              title="Contemplative Reptile"
             />
-            <Title title={title} category={category} isSelected={isSelected} />
-            <ContentContainer>{content}</ContentContainer>
-          </motion.div>
-        </div>
-        {!isSelected && <Link to={id} className={`card-open-link`} />}
-      </li>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {title}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {category}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </StyledCard>
+        <ProjectDialog
+          open={open}
+          setOpen={setOpen}
+          src={src}
+          title={title}
+          content={content}
+        />
+      </motion.div>
     );
-  },
-  (prev, next) => prev.isSelected === next.isSelected
+  }
 );
 
-export default Card;
-
-const Overlay = ({ isSelected }: { isSelected: boolean }) => (
-  <motion.div
-    initial={false}
-    animate={{ opacity: isSelected ? 1 : 0 }}
-    transition={{ duration: 0.2 }}
-    style={{ pointerEvents: isSelected ? "auto" : "none" }}
-    className="overlay"
-  >
-    <Link to="/" />
-  </motion.div>
-);
+export default ProjectCard;

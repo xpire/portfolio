@@ -3,6 +3,7 @@ import Card, { CardData } from "./card/Card";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
 import cardData from "../../content/projects";
+import Grid from "@material-ui/core/Grid";
 
 const StyledUl = styled.ul`
   list-style: none;
@@ -11,18 +12,20 @@ const StyledUl = styled.ul`
 `;
 
 const List = ({ match, history }: { match: any; history: any }) => (
-  <StyledUl>
+  <Grid container spacing={3}>
     {cardData.map((card) => (
-      <Card
-        key={card.id}
-        isSelected={match.params.id === card.id}
-        history={history}
-        src={card.src}
-        content={card.content}
-        {...card}
-      />
+      <Grid item xs={12} sm={6}>
+        <Card
+          key={card.id}
+          isSelected={match.params.id === card.id}
+          history={history}
+          src={card.src}
+          content={card.content}
+          {...card}
+        />
+      </Grid>
     ))}
-  </StyledUl>
+  </Grid>
 );
 
 const CardList = () => (

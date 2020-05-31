@@ -21,7 +21,7 @@ type TitleProps = {
 };
 
 const TitleContainer = styled(motion.div)`
-  position: absolute;
+  // position: absolute;
   top: 0;
   left: 0;
   max-width: 300px;

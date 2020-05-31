@@ -40,7 +40,13 @@ const Projects = () => {
         <Typography variant="h4">
           Here are some projects I've been working on.
         </Typography>
-        <div style={{ position: "relative" }}>
+        <div
+          style={{
+            position: "relative",
+            paddingTop: "10vh",
+            paddingBottom: "10vh",
+          }}
+        >
           <CardList />
         </div>
       </FadeIn>

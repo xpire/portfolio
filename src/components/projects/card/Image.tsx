@@ -18,7 +18,7 @@ const CardImageContainer = styled(motion.div)`
   overflow: hidden;
   height: 420px;
   width: 100vw;
-  transform: translateZ(0);
+  // transform: translateZ(0);
 `;
 
 const Image = ({
