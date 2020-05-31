@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import { motion } from "framer-motion";
 
 type KnownStyles = {
-  position?: "absolute";
+  position?: "absolute" | "relative";
   display?: "flex";
   flexDirection?: "column";
   alignItems?: "flex-start" | "flex-end";

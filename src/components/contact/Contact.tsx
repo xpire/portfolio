@@ -58,7 +58,7 @@ const ParallaxImg = styled(motion.img)`
 const data = [
   {
     name: "name is",
-    value: "Justin Or",
+    value: "Justin\u00A0Or",
     left: "",
     right: "",
     href: "#",
@@ -68,7 +68,7 @@ const data = [
   {
     name: "Linkedin is",
     value: "‌justinor",
-    left: "linkedin.com/in/",
+    left: "linkedin.com\u200B/in/",
     right: "/",
     href: "https://au.linkedin.com/in/justinor",
     key: 1,
@@ -87,7 +87,7 @@ const data = [
     name: "email is",
     value: "justin.or.mail‌‌",
     left: "",
-    right: "‌@gmail‌.com",
+    right: "‌\u200B@gmail.com",
     href: "mailto:justin.or.mail@gmail.com",
     key: 3,
     src: GmailLogo,
@@ -130,7 +130,7 @@ const Contact = () => {
   return (
     <MySection onClick={onClick} id="contact-anchor">
       <Body>
-        <Typography variant="h1">Contact</Typography>
+        <Typography variant="h1">Contact🖱️</Typography>
       </Body>
       <Body>
         {transitions.map(({ item, props, key }: transitionProps) => {

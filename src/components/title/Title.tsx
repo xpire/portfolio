@@ -11,6 +11,8 @@ import AngelBeats from "../ui/AngelBeats";
 import ColorText from "../common/ColorText";
 import FadeIn from "../common/FadeIn";
 
+var Latex = require("react-latex");
+
 const MySection = styled(Section)`
   background: black;
   display: flex;
@@ -37,7 +39,11 @@ const Title = () => {
           {"."}
         </Typography>
         <Typography variant="h2" align="left">
-          {`I'm a software engineer with a passion for algorithms, maths and everything in between.`}
+          {`I'm a software engineer with a passion for `}
+          <code>algorithms</code>
+          {`, `}
+          <Latex>$maths$</Latex>
+          {` and everything in between.`}
         </Typography>
       </FadeIn>
       <AngelBeats />

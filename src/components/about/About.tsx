@@ -27,9 +27,11 @@ const PortraitBorder = styled(motion.img)`
   margin: 5vw 5vw 5vh 5vh;
 `;
 
-const RelativeBox = styled(Box)`
-  position: relative;
-  overflow: "hidden";
+const TwoColumnsUL = styled(motion.ul)`
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  list-style-position: inside; //this is important addition
 `;
 
 const data = [
@@ -37,6 +39,10 @@ const data = [
   { name: "Typescript", logo: ReactLogo },
   { name: "Jenkins", logo: ReactLogo },
   { name: "Teamcity", logo: ReactLogo },
+  { name: "Tensorflow", logo: ReactLogo },
+  { name: "AWS", logo: ReactLogo },
+  { name: "GCP", logo: ReactLogo },
+  { name: "R", logo: ReactLogo },
 ];
 
 const About = () => {
@@ -46,12 +52,13 @@ const About = () => {
         <Grid item md={6} sm={12}>
           <PortraitBorder
             src={Portrait}
-            initial={{ filter: "grayscale(100%)" }}
+            initial={{ filter: "grayscale(20%)" }}
             whileHover={{
               scale: 1.05,
               filter: "grayscale(0%)",
               borderRadius: "50px",
             }}
+            whileTap={{ borderRadius: "300px", scale: 0.9 }}
           />
         </Grid>
         <Grid item md={6} sm={12}>
@@ -59,7 +66,7 @@ const About = () => {
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "flex-end",
+              alignItems: "flex-start",
               paddingLeft: "5vw",
               paddingRight: "5vw",
               paddingTop: "10vh",
@@ -86,13 +93,18 @@ const About = () => {
             <Typography variant="h5" align="left" paragraph={true}>
               {`Here are some technologies I've been working with recently:`}
             </Typography>
-            {data.forEach((value) => {
-              console.log(value);
-              return value.name;
-            })}
-            {/* <Typography variant="h5" align="left" paragraph={true}>
-              - TypeScript - React - Jenkins - Teamcity
-            </Typography> */}
+            <TwoColumnsUL>
+              {data.map((value) => {
+                console.log(value);
+                return (
+                  <Typography align="left" variant="h5">
+                    <motion.li>
+                      <code>{`${value.name}`}</code>
+                    </motion.li>
+                  </Typography>
+                );
+              })}
+            </TwoColumnsUL>
           </FadeIn>
         </Grid>
       </Grid>

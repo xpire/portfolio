@@ -34,7 +34,7 @@ const Title = () => {
     setValue(newValue);
     const anchor = document.querySelector(`#${newValue}-anchor`);
     if (anchor) {
-      anchor.scrollIntoView({ behavior: "smooth", block: "center" });
+      anchor.scrollIntoView({ behavior: "smooth" });
     }
   };
 
