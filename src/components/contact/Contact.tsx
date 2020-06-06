@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { useTransition, animated } from "react-spring";
 import { motion } from "framer-motion";
+import Link from "@material-ui/core/Link";
 
 import Section from "../section/Section";
 import { Box, TopLeftBox, BottomRightBox } from "../common/Box";
@@ -25,10 +26,10 @@ const Body = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-top: 10vh;
+  padding-top: 5vh;
   padding-right: 5vw;
   padding-left: 5vw;
-  padding-bottom: 20vh;
+  padding-bottom: 5vh;
 `;
 
 const AnimatedSentence = styled(Box)`
@@ -56,17 +57,17 @@ const ParallaxImg = styled(motion.img)`
 `;
 
 const data = [
+  // {
+  //   name: "name is",
+  //   value: "Justin\u00A0Or",
+  //   left: "",
+  //   right: "",
+  //   href: "#",
+  //   key: 0,
+  //   src: AvatarLogo,
+  // },
   {
-    name: "name is",
-    value: "Justin\u00A0Or",
-    left: "",
-    right: "",
-    href: "#",
-    key: 0,
-    src: AvatarLogo,
-  },
-  {
-    name: "Linkedin is",
+    name: "Linkedin",
     value: "‌justinor",
     left: "linkedin.com\u200B/in/",
     right: "/",
@@ -75,7 +76,7 @@ const data = [
     src: LinkedinLogo,
   },
   {
-    name: "Github is",
+    name: "Github",
     value: "‌xpire",
     left: "github.com/",
     right: "/",
@@ -84,7 +85,7 @@ const data = [
     src: GithubLogo,
   },
   {
-    name: "email is",
+    name: "Email",
     value: "justin.or.mail‌‌",
     left: "",
     right: "‌\u200B@gmail.com",
@@ -102,79 +103,83 @@ type transitionProps = {
 
 const Contact = () => {
   const [current, setCurrent] = useState(0);
-  const [hover, setHover] = useState(false);
 
-  const onClick = useCallback(() => {
-    setCurrent((current: number) => (current + 1) % data.length);
-  }, []);
+  // const onClick = useCallback(
+  //   (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  //     setCurrent(event.target.key);
+  //   },
+  //   []
+  // );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!hover) onClick();
-    }, 4000);
-    return () => clearInterval(interval);
-  });
-
-  const transitions = useTransition(current, (item: number) => item, {
-    from: { opacity: 0, transform: "translate3d(0, -40px, 0)" },
-    enter: { opacity: 1, transform: "translate3d(0, 0px, 0)" },
-    leave: { opacity: 0, transform: "translate3d(0, 40px, 0)" },
-  });
-
-  const backgroundTransitions = useTransition(current, (item: number) => item, {
-    from: { opacity: 0, transform: "translate3d(40px, 0, 0)" },
-    enter: { opacity: 0.2, transform: "translate3d(0, 0, 0)" },
-    leave: { opacity: 0, transform: "translate3d(-40px, 0, 0)" },
-  });
+  // const backgroundTransitions = useTransition(current, (item: number) => item, {
+  //   from: { opacity: 0, transform: "translate3d(40px, 0, 0)" },
+  //   enter: { opacity: 0.2, transform: "translate3d(0, 0, 0)" },
+  //   leave: { opacity: 0, transform: "translate3d(-40px, 0, 0)" },
+  // });
 
   return (
-    <MySection onClick={onClick} id="contact-anchor">
+    <MySection id="contact-anchor">
       <Body>
-        <Typography variant="h1">Contact🖱️</Typography>
+        <Typography variant="h1">Contact me</Typography>
       </Body>
       <Body>
-        {transitions.map(({ item, props, key }: transitionProps) => {
-          return (
-            <animated.div
-              key={key + "n2"}
-              style={{
-                ...props,
-                position: "absolute", // to ensure animation happens at correct place
-                overflowWrap: "break-word",
-              }}
-            >
-              <Typography key={key + "n3"} variant="h1" align="left">
-                {"My " + data[item].name + " "}
-              </Typography>
-              <MinimalLink>
-                <Typography key={key + "v1"} variant="h1">
-                  {data[item].left}
-                  <ColorText key={key + "v4"} variant="h1" display="inline">
-                    {data[item].value}
-                  </ColorText>
-                  {data[item].right}
-                </Typography>
-              </MinimalLink>
-            </animated.div>
-          );
-        })}
+        <Grid container alignItems="flex-start" flex-direction="column">
+          {data.map((e) => {
+            return (
+              <Grid item xs={12}>
+                <Grid>
+                  <motion.img
+                    src={e.src}
+                    height={"32px"}
+                    style={{ filter: "invert(100%)" }}
+                  />
+                </Grid>
+                <Grid>
+                  <Link
+                    underline="hover"
+                    color="inherit"
+                    key={e.key}
+                    href={e.href}
+                    target="_blank"
+                    rel="noopener"
+                    // onMouseOver={onClick}
+                  >
+                    {e.left}
+                    <ColorText>{e.value}</ColorText>
+                    {e.right}
+                  </Link>
+                </Grid>
+              </Grid>
+            );
+          })}
+        </Grid>
       </Body>
-      {/* {/* <BottomRightBox> */}
-      {backgroundTransitions.map(({ item, props, key }: transitionProps) => {
-        return (
-          <AnimatedSentence key={key + "b1"}>
-            <animated.div key={key + "b1"} style={{ ...props }}>
-              <ParallaxImg
-                key={key + "b1"}
-                src={data[item].src}
-                alt="background overlay"
-                style={{ filter: "invert(100%)" }}
-              />
-            </animated.div>
-          </AnimatedSentence>
-        );
-      })}
-      {/* </BottomRightBox> */}
+      <Body>
+        <Grid>
+          <Link
+            underline="hover"
+            color="inherit"
+            href={
+              "https://drive.google.com/file/d/1lie92_MGf3khXTju0k7kuysYNWZcAvKA/view?usp=sharing"
+            }
+            target="_blank"
+            rel="noopener"
+          >
+            <ColorText>Resume</ColorText>
+          </Link>
+        </Grid>
+        <Grid item xs={12}>
+          <Link
+            underline="hover"
+            color="inherit"
+            href={"https://github.com/xpire/portfolio"}
+            target="_blank"
+            rel="noopener"
+          >
+            <ColorText>Check out this page's source code</ColorText>
+          </Link>
+        </Grid>
+      </Body>
     </MySection>
   );
 };

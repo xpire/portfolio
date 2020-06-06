@@ -38,6 +38,20 @@ const Title = () => {
     }
   };
 
+  // window.addEventListener("load", () => {
+  //   const headings = document.querySelectorAll("h1 a[name]");
+
+  //   document.addEventListener("scroll", (e) => {
+  //     headings.forEach((ha) => {
+  //       const rect = ha.getBoundingClientRect();
+  //       if (rect.top > 0 && rect.top < 150) {
+  //         const location = window.location.toString().split("#")[0];
+  //         history.replaceState(null, "", location + "#" + ha.name);
+  //       }
+  //     });
+  //   });
+  // });
+
   // const listenScrollEvent = (e:any) => {
   //   window.scrollY % window.innerHeight
   //   if (window.scrollY > window.innerHeight) {

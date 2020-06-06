@@ -21,9 +21,9 @@ const cardData: CardData[] = [
         </Typography>
         <Typography paragraph={true}>
           World Models is a Deep Learning framework which trains a network much
-          like a human learns about the world, by focussing on the idea of
-          cultivating a model's version of the environment such that the model
-          can train using it's own imagination.
+          like how a human learns about the world, by focussing on the idea of
+          cultivating a model's internal mental model of their environment such
+          that the model can train using it's own imagination.
         </Typography>
         <Typography paragraph={true}>
           My specific section was training Mixed Density Recurrent Neural
@@ -36,7 +36,7 @@ const cardData: CardData[] = [
   {
     id: "tor",
     category: "Machine Learning, Algorithms",
-    title: "Automatically Detecting silences in speech",
+    title: "Automatically Detecting Silences in Speech",
     pointOfInterest: 120,
     backgroundColor: "#959684",
     src: torSrc,
@@ -47,7 +47,7 @@ const cardData: CardData[] = [
           excerpts of Dementia Patients' speech data.
         </Typography>
         <Typography paragraph={true}>
-          The structure of the recordings were a sequence of words spoken with
+          The structure of the recordings was a sequence of words spoken with
           large gaps between each word, with the occasional remark from the
           interviewer. For such a seemingly simplistic problem, many existing
           silence detecting solutions I tried did not work. Hence, I decided to
@@ -66,7 +66,7 @@ const cardData: CardData[] = [
   {
     id: "sphinx",
     category: "Security, Algorithms",
-    title: "Implementation of sphinx password store protocol",
+    title: "Implementation of Sphinx Password Store Protocol",
     pointOfInterest: 260,
     backgroundColor: "#5DBCD2",
     src: sphinxSrc,

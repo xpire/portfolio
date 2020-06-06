@@ -60,7 +60,7 @@ const ProjectCard = memo(
           <CardActionArea onClick={() => setOpen(true)}>
             <CardMedia
               component="img"
-              alt="Contemplative Reptile"
+              alt="Project Image"
               height="300"
               image={src}
               title="Contemplative Reptile"
@@ -82,6 +82,7 @@ const ProjectCard = memo(
           title={title}
           content={content}
           external={external}
+          category={category}
         />
       </motion.div>
     );

@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import { useTransition, animated } from "react-spring";
 import { motion } from "framer-motion";
@@ -36,7 +37,9 @@ const Projects = () => {
           zIndex: 2,
         }}
       >
-        <Typography variant="h1">Projects</Typography>
+        <Link variant="h1" underline="none" color="initial">
+          Projects
+        </Link>
         <Typography variant="h4">
           Here are some projects I've been working on.
         </Typography>
