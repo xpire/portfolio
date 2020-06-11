@@ -13,6 +13,7 @@ import ColorText from "../common/ColorText";
 import Portrait from "../../portrait_cropped.png";
 
 import ReactLogo from "../../logo.svg";
+import JenkinsLogo from "../../jenkins.svg";
 
 const MySection = styled(Section)`
   background: black;
@@ -23,21 +24,14 @@ const MySection = styled(Section)`
 const PortraitBorder = styled(motion.img)`
   border-color: white;
   border-radius: 150px;
-  max-width: 90vw;
+  max-width: 80vw;
   margin: 5vw 5vw 5vh 5vh;
-`;
-
-const TwoColumnsUL = styled(motion.ul)`
-  columns: 2;
-  -webkit-columns: 2;
-  -moz-columns: 2;
-  list-style-position: inside; //this is important addition
 `;
 
 const data = [
   { name: "React", logo: ReactLogo },
   { name: "Typescript", logo: ReactLogo },
-  { name: "Jenkins", logo: ReactLogo },
+  { name: "Jenkins", logo: JenkinsLogo },
   { name: "Teamcity", logo: ReactLogo },
   { name: "Tensorflow", logo: ReactLogo },
   { name: "AWS", logo: ReactLogo },
@@ -53,6 +47,7 @@ const About = () => {
           <PortraitBorder
             src={Portrait}
             initial={{ filter: "grayscale(20%)" }}
+            width="95%"
             whileHover={{
               scale: 1.05,
               filter: "grayscale(0%)",
@@ -93,18 +88,25 @@ const About = () => {
             <Typography variant="h5" align="left" paragraph={true}>
               {`Here are some technologies I've been working with recently:`}
             </Typography>
-            <TwoColumnsUL>
+            <Grid container>
               {data.map((value) => {
-                console.log(value);
                 return (
-                  <Typography align="left" variant="h5">
-                    <motion.li>
-                      <code>{`${value.name}`}</code>
-                    </motion.li>
-                  </Typography>
+                  <>
+                    <Grid xs={1}>
+                      <Typography variant="h5">
+                        <code>></code>
+                      </Typography>
+                      {/* <img src={value.logo} height="30em" /> */}
+                    </Grid>
+                    <Grid xs={5}>
+                      <Typography variant="h5" align="left">
+                        <code>{value.name}</code>
+                      </Typography>
+                    </Grid>{" "}
+                  </>
                 );
               })}
-            </TwoColumnsUL>
+            </Grid>
           </FadeIn>
         </Grid>
       </Grid>

@@ -14,7 +14,7 @@ const AngelBeats = () => {
     [0.5, 0.95, 1],
     ["#000000", "#666666", "#FFFFFF"]
   );
-  const opacity = useTransform(pathLength, [0.15, 0.6], [0, 0.5]);
+  const opacity = useTransform(pathLength, [0.15, 0.6], [0, 0.7]);
   const stroke = "hsl(0, 0%, 100%)";
 
   // Animate on scroll

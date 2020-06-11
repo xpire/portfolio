@@ -37,9 +37,10 @@ const Projects = () => {
           zIndex: 2,
         }}
       >
-        <Link variant="h1" underline="none" color="initial">
+        {/* <Link variant="h1" underline="none" color="initial">
           Projects
-        </Link>
+        </Link> */}
+        <Typography variant="h1">Projects</Typography>
         <Typography variant="h4">
           Here are some projects I've been working on.
         </Typography>

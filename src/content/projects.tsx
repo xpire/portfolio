@@ -2,6 +2,7 @@ import { CardData } from "../components/projects/card/Card";
 import worldmodelSrc from "./image/worldmodels.png";
 import torSrc from "./image/tor.png";
 import sphinxSrc from "./image/sphinx.png";
+import ecksdeeSrc from "./image/ecksdee.png";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
@@ -103,7 +104,7 @@ const cardData: CardData[] = [
           functions in JavaScript with sjcl.js for front-end cryptographic
           capability and a fully featured React.js front-end chrome extension
           providing full user experience for MVP.
-        </Typography>{" "}
+        </Typography>
         <Typography paragraph={true}>
           Here is a live demo of the chrome extension:
         </Typography>
@@ -126,6 +127,35 @@ const cardData: CardData[] = [
       </div>
     ),
     external: "https://github.com/xpire/somethingAwesomeSphinx",
+  },
+  {
+    id: "ecksdee",
+    category: "Game Development, Algorithms",
+    title: "X-it the Dungeon Game written in pure Java",
+    pointOfInterest: 120,
+    backgroundColor: "#959684",
+    src: ecksdeeSrc,
+    content: (
+      <div>
+        <Typography paragraph={true}>
+          In this project, we created a dungeon crawler game, combining
+          exploration with combat and creativity.
+        </Typography>
+        <Typography paragraph={true}>
+          The game was inspired by the creative modes of Super Mario Maker with
+          the Dungeon aspect of old 2d turn based games. Throughout the project,
+          my team and I honed our Git and Java skills in one of the first full
+          scale teamwork projects ever.
+        </Typography>
+        <Typography paragraph={true}>
+          I wrote the AI for the enemies, from simple shortest path finding to
+          implementing an iterative page-rank algorithm to simulate a markov
+          chain of the user's moves. I also was in charge of the animations of
+          all sprites and the sound system.
+        </Typography>
+      </div>
+    ),
+    external: "https://github.com/xpire/X-itTheDungeon",
   },
 ];
 
