@@ -7,11 +7,13 @@ import { motion } from "framer-motion";
 import AppBar from "@material-ui/core/AppBar";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import Button from "@material-ui/core/Button";
 
 import FolderIcon from "@material-ui/icons/Folder";
 import CallIcon from "@material-ui/icons/Call";
 import InfoIcon from "@material-ui/icons/Info";
 import HomeIcon from "@material-ui/icons/Home";
+import logo from "../../website.logo.svg";
 
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
@@ -30,9 +32,11 @@ function HideOnScroll(props: { children: React.ReactElement }) {
 const Title = () => {
   const [value, setValue] = React.useState("home");
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-    setValue(newValue);
-    const anchor = document.querySelector(`#${newValue}-anchor`);
+  const handleChange = (event: React.MouseEvent<{}>) => {
+    const target = event.target as HTMLButtonElement;
+    setValue(target.innerText);
+    console.log(target.innerText);
+    const anchor = document.querySelector(`#${target.innerText}-anchor`);
     if (anchor) {
       anchor.scrollIntoView({ behavior: "smooth" });
     }
@@ -64,8 +68,44 @@ const Title = () => {
 
   return (
     <HideOnScroll>
-      <AppBar>
-        <BottomNavigation
+      <AppBar
+        style={{
+          // marginLeft: 2,
+          background: "black",
+        }}
+      >
+        {/* <img
+          src={logo}
+          style={{
+            filter: "invert(100%)",
+            height: "1em",
+            padding: "6px",
+          }}
+        /> */}
+        <Grid container spacing={1} justify="flex-start" alignItems="stretch">
+          <Grid item xs={3} md={1}>
+            <Button style={{ color: "white" }} onClick={handleChange}>
+              Home
+            </Button>
+          </Grid>
+          <Grid item xs={3} md={1}>
+            <Button style={{ color: "white" }} onClick={handleChange}>
+              About
+            </Button>
+          </Grid>
+          <Grid item xs={3} md={1}>
+            <Button style={{ color: "white" }} onClick={handleChange}>
+              Projects
+            </Button>
+          </Grid>
+          <Grid item xs={3} md={1}>
+            <Button style={{ color: "white" }} onClick={handleChange}>
+              Contact
+            </Button>
+          </Grid>
+        </Grid>
+
+        {/* <BottomNavigation
           value={value}
           onChange={handleChange}
           style={{
@@ -97,7 +137,7 @@ const Title = () => {
             style={{ color: "white" }}
             icon={<CallIcon />}
           />
-        </BottomNavigation>
+        </BottomNavigation> */}
       </AppBar>
     </HideOnScroll>
   );

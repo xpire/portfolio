@@ -63,7 +63,7 @@ const ProjectCard = memo(
               alt="Project Image"
               height="300"
               image={src}
-              title="Contemplative Reptile"
+              title="Project Image"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">

@@ -20,7 +20,7 @@ const MySection = styled(Section)`
 
 const Title = () => {
   return (
-    <MySection id="home-anchor">
+    <MySection id="HOME-anchor">
       <FadeIn
         style={{
           position: "absolute",

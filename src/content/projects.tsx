@@ -3,6 +3,7 @@ import worldmodelSrc from "./image/worldmodels.png";
 import torSrc from "./image/tor.png";
 import sphinxSrc from "./image/sphinx.png";
 import ecksdeeSrc from "./image/ecksdee.png";
+import magicSrc from "./image/magic.png";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
@@ -156,6 +157,35 @@ const cardData: CardData[] = [
       </div>
     ),
     external: "https://github.com/xpire/X-itTheDungeon",
+  },
+  {
+    id: "magic",
+    category: "Security, Animations",
+    title: "Magic String for Pen Testers",
+    pointOfInterest: 120,
+    backgroundColor: "#959684",
+    src: magicSrc,
+    content: (
+      <div>
+        <Typography paragraph={true}>
+          In this project, I was really interested in a concept we learnt in a
+          Security course about Web Application Security.
+        </Typography>
+        <Typography paragraph={true}>
+          Our lecturer explained that this magic string could be used in
+          preliminary stages to figure out if a user input field is vulnerable
+          to common exploits like XSS and SQLI.
+        </Typography>
+        <Typography paragraph={true}>
+          Fascinated by this idea, I wanted to investigate and showcase the
+          information density present in this short string, with explanations
+          for what each part of the string does. I also used this project to try
+          out a parallax effect with react-spring that I have been playing
+          around with recently.
+        </Typography>
+      </div>
+    ),
+    external: "https://magic.justinor.dev",
   },
 ];
 

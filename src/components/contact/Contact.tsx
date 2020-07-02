@@ -118,7 +118,7 @@ const Contact = () => {
   // });
 
   return (
-    <MySection id="contact-anchor">
+    <MySection id="CONTACT-anchor">
       <Body>
         <Typography variant="h1">Contact me</Typography>
       </Body>
@@ -159,13 +159,14 @@ const Contact = () => {
           <Link
             underline="hover"
             color="inherit"
-            href={
-              "https://drive.google.com/file/d/1lie92_MGf3khXTju0k7kuysYNWZcAvKA/view?usp=sharing"
-            }
-            target="_blank"
-            rel="noopener"
+            href={"mailto:justin.or.mail@gmail.com"}
+            // href={
+            //   "https://drive.google.com/file/d/1lie92_MGf3khXTju0k7kuysYNWZcAvKA/view?usp=sharing"
+            // }
+            // target="_blank"
+            // rel="noopener"
           >
-            <ColorText>Resume</ColorText>
+            <ColorText>Email me for a Resume</ColorText>
           </Link>
         </Grid>
         <Grid item xs={12}>

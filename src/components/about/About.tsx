@@ -41,7 +41,7 @@ const data = [
 
 const About = () => {
   return (
-    <MySection id="about-anchor">
+    <MySection id="ABOUT-anchor">
       <Grid container>
         <Grid item md={6} sm={12}>
           <PortraitBorder

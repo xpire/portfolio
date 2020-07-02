@@ -25,7 +25,7 @@ const Indented = styled(Typography)`
 
 const Projects = () => {
   return (
-    <MySection id="projects-anchor">
+    <MySection id="PROJECTS-anchor">
       <FadeIn
         style={{
           display: "flex",
