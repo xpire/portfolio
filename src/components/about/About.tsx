@@ -47,7 +47,7 @@ const About = () => {
           <PortraitBorder
             src={Portrait}
             initial={{ filter: "grayscale(20%)" }}
-            width="95%"
+            width="80%"
             whileHover={{
               scale: 1.05,
               filter: "grayscale(0%)",

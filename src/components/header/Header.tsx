@@ -8,6 +8,7 @@ import AppBar from "@material-ui/core/AppBar";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
 
 import FolderIcon from "@material-ui/icons/Folder";
 import CallIcon from "@material-ui/icons/Call";
@@ -84,24 +85,24 @@ const Title = () => {
         /> */}
         <Grid container spacing={1} justify="flex-start" alignItems="stretch">
           <Grid item xs={3} md={1}>
-            <Button style={{ color: "white" }} onClick={handleChange}>
-              Home
-            </Button>
+            <Link style={{ color: "white" }} onClick={handleChange}>
+              <Typography variant="overline">Home</Typography>
+            </Link>
           </Grid>
           <Grid item xs={3} md={1}>
-            <Button style={{ color: "white" }} onClick={handleChange}>
-              About
-            </Button>
+            <Link style={{ color: "white" }} onClick={handleChange}>
+              <Typography variant="overline">About</Typography>
+            </Link>
           </Grid>
           <Grid item xs={3} md={1}>
-            <Button style={{ color: "white" }} onClick={handleChange}>
-              Projects
-            </Button>
+            <Link style={{ color: "white" }} onClick={handleChange}>
+              <Typography variant="overline">Projects</Typography>
+            </Link>
           </Grid>
           <Grid item xs={3} md={1}>
-            <Button style={{ color: "white" }} onClick={handleChange}>
-              Contact
-            </Button>
+            <Link style={{ color: "white" }} onClick={handleChange}>
+              <Typography variant="overline">Contact</Typography>
+            </Link>
           </Grid>
         </Grid>
 
